@@ -1,0 +1,20 @@
+* {
+  font-family: sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 1em 0 1em 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+#toDoInput {
+  height: 2em;
+  width: 20em;
+  font-size: larger;
+  border-bottom: 1px #333;
+}
