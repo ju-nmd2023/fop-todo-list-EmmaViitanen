@@ -9,10 +9,12 @@ header {
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 30em;
 }
 
 #toDoInput {
+  flex: 1;
   height: 2em;
   width: 20em;
   font-size: larger;
@@ -24,4 +26,17 @@ header {
 
 #addButton {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px, 10px;
+}
+
+.listItems {
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+  width: 30em;
+  height: 2em;
+  background-color: darksalmon;
 }
