@@ -16,5 +16,12 @@ header {
   height: 2em;
   width: 20em;
   font-size: larger;
-  border-bottom: 1px #333;
+  border: none;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 1em;
+  outline: none;
+}
+
+#addButton {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
