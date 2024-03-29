@@ -7,6 +7,12 @@ header {
   padding: 1em 0 1em 0;
 }
 
+main {
+  display: grid;
+  justify-content: center;
+  row-gap: 10px;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
