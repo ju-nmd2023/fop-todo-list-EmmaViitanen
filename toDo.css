@@ -1,5 +1,5 @@
 * {
-  font-family: sans-serif;
+  font-family: Geneva, Verdana, sans-serif;
 }
 
 header {
@@ -7,42 +7,47 @@ header {
   padding: 1em 0 1em 0;
 }
 
-main {
+.container {
   display: grid;
   justify-content: center;
   row-gap: 10px;
 }
 
-.container {
+.inputBox {
   display: flex;
   justify-content: space-between;
   width: 30em;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-#toDoInput {
+#input {
   flex: 1;
   height: 2em;
   width: 20em;
   font-size: larger;
   border: none;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   padding-left: 1em;
   outline: none;
 }
 
 #addButton {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  width: 5em;
+  background-color: lightgray;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 10px, 10px;
 }
 
-.listItems {
+#addButton:hover {
+  background-color: grey;
+}
+
+#listItem {
   display: flex;
   align-items: center;
-  padding-left: 1em;
-  width: 30em;
+  font-size: 20px;
   height: 2em;
   background-color: darksalmon;
+  list-style: none;
 }
