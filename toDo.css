@@ -1,16 +1,15 @@
 * {
+  margin: 0;
+  padding: 0;
   font-family: Geneva, Verdana, sans-serif;
-}
-
-header {
-  text-align: center;
-  padding: 1em 0 1em 0;
+  box-sizing: border-box;
 }
 
 .container {
-  display: grid;
+  background: linear-gradient(#ff59a8, #ffc426);
+  /* display: grid;
   justify-content: center;
-  row-gap: 10px;
+  row-gap: 10px; */
 }
 
 .inputBox {
