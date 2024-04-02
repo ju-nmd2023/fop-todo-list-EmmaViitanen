@@ -1,16 +1,17 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
+const addBtn = document.getElementById("addButton");
 
 function addTask() {
-  //   const inputValue = inputBox.value;
+  const inputValue = inputBox.value;
 
-  if (inputBox.value === "") {
-    alert("Write a task");
-  } else {
-    alert("hello");
+  if (inputValue !== "") {
+    let liElement = document.createElement("li");
+    liElement.innerText = inputValue;
+    listContainer.appendChild(liElement);
   }
 }
 
 // for (const button of addButtonElements) {
-button.addEventListener("click", addTask);
+addBtn.addEventListener("click", addTask);
 // }
