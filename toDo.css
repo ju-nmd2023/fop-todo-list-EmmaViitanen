@@ -8,7 +8,7 @@
 .container {
   background: linear-gradient(#ff59a8, #ffc426);
   width: 100%;
-  height: 65rem;
+  height: 100vh;
 
   /* display: grid;
   justify-content: center;
@@ -17,15 +17,21 @@
 
 .todo-list {
   background-color: #fff;
-  width: 50%;
+  width: 100%;
+  max-width: 450px;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  padding: 40px 30px 70px;
+  margin: auto;
   border-radius: 10px;
 }
 
 .input-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: #edeef0;
+  margin-bottom: 25px;
+  border-radius: 30px;
 }
 
 #input-box {
@@ -36,18 +42,19 @@
   border: none;
   padding-left: 20px;
   outline: none;
-  border-bottom: 1px solid #333;
+  background: transparent;
 }
 
 button {
   width: 8em;
   background-color: #ff59a8;
   color: #fff;
+  font-size: 16px;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 40px;
 }
 
 button:hover {
