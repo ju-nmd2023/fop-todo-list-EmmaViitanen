@@ -65,4 +65,27 @@ li {
   list-style: none;
   font-size: 20px;
   padding: 20px;
+  position: relative;
+}
+
+ul li span {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+ul li span:hover {
+  background-color: #edeef0;
+}
+
+input[type="checkbox"] {
+  width: 40px;
+  font-size: 40px;
 }

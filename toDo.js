@@ -18,11 +18,17 @@ function addTask() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.addEventListener("change", function () {
-      toggleMarked(listItem, checkbox.checked);
+      toggleMarked(checkbox.checked, listItem);
     });
 
     listItem.append(checkbox);
+
+    let span = document.createElement("span");
+    span.innerText = "\u00d7";
+    listItem.appendChild(span);
+    span.addEventListener("click", deleteBtn);
   }
+  inputBox.value = "";
 }
 
 // Mark checkbox if task complete
@@ -30,9 +36,8 @@ function toggleMarked(listItem, isChecked) {
   listItem.classList.toggle("marked", isChecked);
 }
 
-function deleteBtn() {
-  const deleteButton = document.createElement("button");
-  deleteButton.addEventListener("click");
-  
-  if (d)
+function deleteBtn(e) {
+  if (e.target.tagName === "SPAN") {
+    e.target.parentElement.remove();
+  }
 }
