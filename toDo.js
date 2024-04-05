@@ -20,13 +20,16 @@ function addTask() {
     checkbox.addEventListener("change", function () {
       toggleMarked(checkbox.checked, listItem);
     });
-
     listItem.append(checkbox);
 
+    //* The following 3 lines plus line 35, of code was adapted
+    /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Achieved: 4/4-2024 */
     let span = document.createElement("span");
     span.innerText = "\u00d7";
     listItem.appendChild(span);
-    span.addEventListener("click", deleteBtn);
+    span.addEventListener("click", function () {
+      deleteBtn(listItem);
+    });
   }
   inputBox.value = "";
 }
@@ -36,8 +39,9 @@ function toggleMarked(listItem, isChecked) {
   listItem.classList.toggle("marked", isChecked);
 }
 
-function deleteBtn(e) {
-  if (e.target.tagName === "SPAN") {
-    e.target.parentElement.remove();
-  }
+// Deletes list item
+function deleteBtn(listItem) {
+  listItem.remove();
 }
+
+function updateLocalStorage() {}
