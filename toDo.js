@@ -19,6 +19,7 @@ function addTask() {
     checkbox.type = "checkbox";
     checkbox.addEventListener("change", function () {
       toggleMarked(checkbox.checked, listItem);
+      updateLocalStorage();
     });
     listItem.append(checkbox);
 
@@ -29,7 +30,10 @@ function addTask() {
     listItem.appendChild(span);
     span.addEventListener("click", function () {
       deleteBtn(listItem);
+      updateLocalStorage();
     });
+
+    updateLocalStorage();
   }
   inputBox.value = "";
 }
@@ -44,4 +48,25 @@ function deleteBtn(listItem) {
   listItem.remove();
 }
 
-function updateLocalStorage() {}
+//The following lines of code was adapted from ChatGPT, Accessed: 6/4-2024
+// Update local storage with current tasks
+function updateLocalStorage() {
+  const tasks = Array.from(listContainer.children).map((item) => ({
+    task: item.innerText,
+    completed: item.classList.contains("marked"),
+  }));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Retrieve tasks from local storage on page load
+document.addEventListener("DOMContentLoaded", function () {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.forEach((task) => {
+    const listItem = document.createElement("li");
+    listItem.innerText = task.task;
+    if (task.completed) {
+      listItem.classList.add("marked");
+    }
+    listContainer.appendChild(listItem);
+  });
+});
