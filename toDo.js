@@ -19,7 +19,6 @@ function addTask() {
     checkbox.type = "checkbox";
     checkbox.addEventListener("change", function () {
       toggleMarked(checkbox.checked, listItem);
-      updateLocalStorage();
     });
     listItem.append(checkbox);
 
@@ -29,7 +28,7 @@ function addTask() {
     span.innerText = "\u00d7";
     listItem.appendChild(span);
     span.addEventListener("click", function () {
-      deleteBtn(listItem);
+      deleteTask(listItem);
       updateLocalStorage();
     });
 
@@ -44,8 +43,9 @@ function toggleMarked(listItem, isChecked) {
 }
 
 // Deletes list item
-function deleteBtn(listItem) {
+function deleteTask(listItem) {
   listItem.remove();
+  updateLocalStorage();
 }
 
 //The following lines of code was adapted from ChatGPT, Accessed: 6/4-2024
@@ -58,7 +58,7 @@ function updateLocalStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Retrieve tasks from local storage on page load
+// // Retrieve tasks from local storage on page load
 document.addEventListener("DOMContentLoaded", function () {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.forEach((task) => {
