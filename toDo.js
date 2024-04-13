@@ -9,24 +9,24 @@ addBtn.addEventListener("click", addTask);
 function addTask() {
   // If the input box is empty, show nothing
   if (inputBox.value !== "") {
-    // Creates list element, adds input content, displays list item in ul
+    // Creates all the elements needed
     const listItem = document.createElement("li");
-
-    // Create span for text
+    const checkbox = document.createElement("input");
     const textSpan = document.createElement("span");
+    const deleteBtn = document.createElement("button");
+
+    // Adds text to span
     textSpan.innerText = inputBox.value;
 
-    // Create "completed" check box next to listItem
-    const checkbox = document.createElement("input");
+    // "Completed" check box next to listItem
     checkbox.type = "checkbox";
     checkbox.addEventListener("change", function () {
       toggleMarked(checkbox.checked, listItem);
     });
 
-    const deleteBtn = document.createElement("button");
     //* The following 3 lines plus line 35, of code was adapted
     /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Accessed: 4/4-2024 */
-    deleteBtn.innerText = "u00d7";
+    deleteBtn.innerText = "\u00d7";
     deleteBtn.addEventListener("click", function () {
       deleteTask(listItem);
     });
@@ -51,22 +51,8 @@ function deleteTask(listItem) {
 // Update local storage with current tasks
 function updateLocalStorage() {
   const tasks = Array.from(listContainer.children).map((item) => ({
-    task: item.innerText,
+    task: item.querySelector("span").textContent,
     completed: item.classList.contains("marked"),
-    deleted: item.deleteBtn,
   }));
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
-// // Retrieve tasks from local storage on page load
-document.addEventListener("DOMContentLoaded", function () {
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.forEach((task) => {
-    const listItem = document.createElement("li");
-    listItem.innerText = task.task;
-    if (task.completed) {
-      listItem.classList.add("marked");
-    }
-    listContainer.appendChild(listItem);
-  });
-});
