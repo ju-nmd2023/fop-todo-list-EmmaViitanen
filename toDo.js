@@ -11,8 +11,10 @@ function addTask() {
   if (inputBox.value !== "") {
     // Creates list element, adds input content, displays list item in ul
     const listItem = document.createElement("li");
-    listItem.innerText = inputBox.value;
-    listContainer.appendChild(listItem);
+
+    // Create span for text
+    const textSpan = document.createElement("span");
+    textSpan.innerText = inputBox.value;
 
     // Create "completed" check box next to listItem
     const checkbox = document.createElement("input");
@@ -20,19 +22,17 @@ function addTask() {
     checkbox.addEventListener("change", function () {
       toggleMarked(checkbox.checked, listItem);
     });
-    listItem.append(checkbox);
 
+    const deleteBtn = document.createElement("button");
     //* The following 3 lines plus line 35, of code was adapted
-    /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Achieved: 4/4-2024 */
-    let span = document.createElement("span");
-    span.innerText = "\u00d7";
-    listItem.appendChild(span);
-    span.addEventListener("click", function () {
+    /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Accessed: 4/4-2024 */
+    deleteBtn.innerText = "u00d7";
+    deleteBtn.addEventListener("click", function () {
       deleteTask(listItem);
-      updateLocalStorage();
     });
 
-    updateLocalStorage();
+    listContainer.appendChild(listItem);
+    listItem.append(checkbox, textSpan, deleteBtn);
   }
   inputBox.value = "";
 }
@@ -45,7 +45,6 @@ function toggleMarked(listItem, isChecked) {
 // Deletes list item
 function deleteTask(listItem) {
   listItem.remove();
-  updateLocalStorage();
 }
 
 //The following lines of code was adapted from ChatGPT, Accessed: 6/4-2024
@@ -54,6 +53,7 @@ function updateLocalStorage() {
   const tasks = Array.from(listContainer.children).map((item) => ({
     task: item.innerText,
     completed: item.classList.contains("marked"),
+    deleted: item.deleteBtn,
   }));
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }

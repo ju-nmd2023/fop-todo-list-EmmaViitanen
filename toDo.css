@@ -75,9 +75,9 @@ li {
   position: relative;
 }
 
-ul li span {
+ul li button {
   cursor: pointer;
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   top: 5px;
   font-size: 25px;
@@ -88,7 +88,7 @@ ul li span {
   border-radius: 50%;
 }
 
-ul li span:hover {
+ul li button:hover {
   background-color: #f8c8dc;
   color: #ff59a8;
 }
