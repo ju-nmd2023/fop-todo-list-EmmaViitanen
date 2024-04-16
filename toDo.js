@@ -3,7 +3,15 @@ const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const addBtn = document.getElementById("addButton");
 
+// Adds task if add-button is pressed
 addBtn.addEventListener("click", addTask);
+// Adds task if enter key is pressed
+inputBox.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    // Check if Enter key is pressed
+    addTask();
+  }
+});
 
 loadFromLocalStorage();
 
