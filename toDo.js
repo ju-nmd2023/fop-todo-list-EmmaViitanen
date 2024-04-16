@@ -5,41 +5,49 @@ const addBtn = document.getElementById("addButton");
 
 addBtn.addEventListener("click", addTask);
 
+loadFromLocalStorage();
+
+// Create items
+function createListItem(taskText, completed) {
+  // creates list item
+  const listItem = document.createElement("li");
+  const textSpan = document.createElement("span");
+  textSpan.innerText = taskText;
+
+  // Creates checkbox
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = completed;
+  checkbox.addEventListener("change", function () {
+    toggleMarked(listItem, checkbox.checked);
+    updateLocalStorage();
+  });
+
+  // If completed, add to class
+  if (completed) {
+    listItem.classList.add("completed");
+  }
+
+  // delete button
+  const deleteBtn = document.createElement("button");
+  //* The following 3 lines plus line 35, of code was adapted
+  /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Accessed: 4/4-2024 */
+  deleteBtn.innerText = "\u00d7";
+  deleteBtn.addEventListener("click", function () {
+    deleteTask(listItem);
+    updateLocalStorage();
+  });
+
+  listItem.append(checkbox, textSpan, deleteBtn);
+  return listItem;
+}
+
 // Fetch and display task input
 function addTask(item) {
   // If the input box is empty, show nothing
   if (inputBox.value !== "") {
-    // Creates all the elements needed
-    const listItem = document.createElement("li");
-    const checkbox = document.createElement("input");
-    const textSpan = document.createElement("span");
-    const deleteBtn = document.createElement("button");
-
-    console.log("Added task data", textSpan);
-    // Adds text to span
-    textSpan.innerText = inputBox.value;
-
-    // "Completed" check box next to listItem
-    checkbox.type = "checkbox";
-
-    toggleMarked(listItem, item.completed);
-
-    checkbox.addEventListener("change", function () {
-      toggleMarked(listItem, checkbox.checked);
-      updateLocalStorage();
-    });
-
-    //* The following 3 lines plus line 35, of code was adapted
-    /* from https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56 Accessed: 4/4-2024 */
-    deleteBtn.innerText = "\u00d7";
-    deleteBtn.addEventListener("click", function () {
-      deleteTask(listItem);
-      updateLocalStorage();
-    });
-
+    const listItem = createListItem(inputBox.value, false);
     listContainer.appendChild(listItem);
-    listItem.append(checkbox, textSpan, deleteBtn);
-
     updateLocalStorage();
   }
   inputBox.value = "";
@@ -62,7 +70,7 @@ function updateLocalStorage() {
   console.log("Updating local storage");
   let tasks = Array.from(listContainer.children).map((item) => ({
     task: item.querySelector("span").textContent,
-    completed: item.classList.contains("completed"), // Use "completed" here
+    completed: item.querySelector("input[type=checkbox]").checked,
   }));
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -71,11 +79,9 @@ function updateLocalStorage() {
 function loadFromLocalStorage() {
   console.log("Loading tasks from local storage");
   const storedItems = JSON.parse(localStorage.getItem("tasks")) || [];
-  console.log("Stored Items:", storedItems);
   storedItems.forEach((item) => {
-    addTask(item);
-    console.log("hej", storedItems);
+    const listItem = createListItem(item.task, item.completed);
+    listContainer.appendChild(listItem);
+    console.log("loading:" + item.task);
   });
 }
-
-loadFromLocalStorage();
