@@ -73,7 +73,6 @@ function deleteTask(listItem) {
 
 //The following lines of code was adapted from ChatGPT, Accessed: 6/4-2024
 // Update local storage with current tasks
-
 function updateLocalStorage() {
   console.log("Updating local storage");
   let tasks = Array.from(listContainer.children).map((item) => ({
