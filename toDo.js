@@ -5,6 +5,8 @@ const addBtn = document.getElementById("addButton");
 
 // Adds task if add-button is pressed
 addBtn.addEventListener("click", addTask);
+
+// The following 5 lines of code was inspired by https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode. Accessed: 16/4-2024
 // Adds task if enter key is pressed
 inputBox.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
@@ -23,6 +25,7 @@ function createListItem(taskText, completed) {
   textSpan.innerText = taskText;
 
   // Creates checkbox
+  // The following 10 lines of code was added by courtesy of Richard Viitanen
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = completed;
@@ -62,6 +65,7 @@ function addTask(item) {
 }
 
 // Mark checkbox if task complete
+// The following 2 lines of code was added by courtesy of Richard Viitanen
 function toggleMarked(listItem, isChecked) {
   listItem.classList.toggle("completed", isChecked);
 }
@@ -71,10 +75,9 @@ function deleteTask(listItem) {
   listItem.remove();
 }
 
-//The following lines of code was adapted from ChatGPT, Accessed: 6/4-2024
+//The following lines of code was inspired from ChatGPT, Accessed: 6/4-2024
 // Update local storage with current tasks
 function updateLocalStorage() {
-  console.log("Updating local storage");
   let tasks = Array.from(listContainer.children).map((item) => ({
     task: item.querySelector("span").textContent,
     completed: item.querySelector("input[type=checkbox]").checked,
@@ -84,11 +87,9 @@ function updateLocalStorage() {
 
 // Load from local storage
 function loadFromLocalStorage() {
-  console.log("Loading tasks from local storage");
   const storedItems = JSON.parse(localStorage.getItem("tasks")) || [];
   storedItems.forEach((item) => {
     const listItem = createListItem(item.task, item.completed);
     listContainer.appendChild(listItem);
-    console.log("loading:" + item.task);
   });
 }

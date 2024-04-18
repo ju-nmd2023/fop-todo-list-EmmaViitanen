@@ -5,6 +5,7 @@
   font-family: "Quicksand", sans-serif;
 }
 
+/* The following lines until line 95 was inspired by https://youtu.be/G0jO8kUrg-I?si=OarSnlL0n1wN1T56. Accessed 4/4-2024*/
 /* The main background */
 .container {
   background: linear-gradient(#b0ccdf, #dcb8b0);
