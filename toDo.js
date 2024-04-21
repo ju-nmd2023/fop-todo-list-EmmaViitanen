@@ -75,7 +75,8 @@ function deleteTask(listItem) {
   listItem.remove();
 }
 
-//The following lines of code was inspired from ChatGPT, Accessed: 6/4-2024
+//The following lines of code was inspired from ChatGPT https://chat.openai.com/share/cb6209d2-421e-47cc-9d35-85c524e47121, Accessed: 6/4-2024
+
 // Update local storage with current tasks
 function updateLocalStorage() {
   let tasks = Array.from(listContainer.children).map((item) => ({
